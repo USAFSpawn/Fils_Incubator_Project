@@ -1,0 +1,106 @@
+# 🛠 Fils_Incubator_Project - Assembly & Wiring Guide
+
+This document provides **step-by-step instructions** for assembling, wiring, and configuring the **Raspberry Pi-based automated egg incubator**.
+
+---
+
+## **1️⃣ Preparing the Enclosure**
+- Choose an **insulated cabinet** to maintain stable temperature and humidity.
+- Ensure **proper ventilation** using **adjustable vents and 12V DC fans**.
+- Install **camera mounts** to position Raspberry Pi cameras for **clear egg monitoring**.
+
+---
+
+## **2️⃣ Installing the Raspberry Pi**
+- **Mount the Raspberry Pi securely** inside the incubator.
+- Connect **microSD card** with **Raspberry Pi OS Lite** installed.
+- Use a **5V/3A power adapter** for stable power supply.
+- Enable **SSH or VNC** for remote access.
+
+---
+
+## **3️⃣ Connecting Temperature & Humidity Sensors**
+### **SHT4x (Recommended) Wiring**
+- **VCC** → Raspberry Pi **3.3V**
+- **GND** → Raspberry Pi **GND**
+- **SDA** → Raspberry Pi **GPIO2 (I2C Data)**
+- **SCL** → Raspberry Pi **GPIO3 (I2C Clock)**
+
+### **DHT22 (Alternative) Wiring**
+- **VCC** → Raspberry Pi **5V**
+- **GND** → Raspberry Pi **GND**
+- **Data** → Raspberry Pi **GPIO4**
+
+---
+
+## **4️⃣ Installing Heating Elements**
+### **PTC Heating Pad Wiring via Relay**
+- **Relay Module IN** → Raspberry Pi **GPIO17**
+- **Relay VCC & GND** → Raspberry Pi **5V & GND**
+- **Relay NO Terminal** → **Heating Pad Positive**
+- **Heating Pad Negative** → **Power Supply Ground**
+
+---
+
+## **5️⃣ Setting Up Humidity System**
+- Mount **ultrasonic humidifier** in an enclosed humidity chamber.
+- **Relay Wiring for Automated Control**
+  - **Relay Module IN** → Raspberry Pi **GPIO27**
+  - **Relay Output** → **Humidifier Power Control**
+
+---
+
+## **6️⃣ Egg Turning Mechanism Installation**
+### **Servo Motor (MG995) Wiring**
+- **VCC** → Raspberry Pi **5V**
+- **GND** → Raspberry Pi **GND**
+- **PWM Signal** → Raspberry Pi **GPIO18**
+
+### **Stepper Motor (NEMA 17) Wiring (Using A4988 Stepper Driver)**
+- **Step Signal** → Raspberry Pi **GPIO22**
+- **Dir Signal** → Raspberry Pi **GPIO23**
+- **Power** → **12V Supply**
+- **Motor Shaft** → **Egg-Turning Rack System**
+
+---
+
+## **7️⃣ Installing Egg Trays & Racks**
+- **Select modular egg trays** based on egg size (chicken, duck, quail).
+- Secure trays into **adjustable rails or mounting brackets** for smooth rotation.
+- Ensure **even spacing** between trays for uniform heat and humidity distribution.
+
+---
+
+## **8️⃣ Setting Up Camera Monitoring**
+- Install **Raspberry Pi Camera Module** for monitoring incubation progress.
+- **Connect CSI Port:** Attach the camera to Pi’s **CSI interface**.
+- **Install MotionEyeOS for live streaming**.
+
+---
+
+## **9️⃣ Air Circulation & Fan Wiring**
+### **PWM Fan Wiring**
+- **VCC (12V)** → **Dedicated 12V Power Supply**
+- **GND** → **Ground**
+- **PWM Control** → Raspberry Pi **GPIO14**
+
+---
+
+## **🔧 Final System Check & Software Setup**
+1. Flash **Raspberry Pi OS Lite**, update packages, and install dependencies:
+   ```bash
+   sudo apt update && sudo apt install python3-pip
+   pip install flask fastapi paho-mqtt smbus2 opencv-python gpiozero
+2. Common Issues & Fixes
+    - **Temperature not updating?** Check sensor wiring & I2C address.
+    - **Egg turner not moving?** Test servo motor PWM control manually.
+    - **Humidity not regulating?** Ensure the relay module is switching properly.
+    - **Web dashboard not loading?** Ensure Flask/FastAPI server is running.
+
+
+## **ADDITIONAL NOTES**
+1. Connect ALL sensors, motors, and cameras according to the wiring diagrams.
+2. Run the incubator control script to validate operations:
+    python3 incubator.py
+3. If configured, access the web dashboard at the below URL: 
+    http://<raspberry-pi-ip>:5000
