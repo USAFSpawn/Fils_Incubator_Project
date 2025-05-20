@@ -44,5 +44,16 @@
     "POWER_EFFICIENCY_MODE": {
         "_comment": "If enabled, reduces power consumption by limiting sensor polling frequency.",
         "ENABLED": false
+    },
+
+    "ALERTS": {
+        "ENABLED": true,
+        "SMS_ENABLED": true,
+        "EMAIL_ENABLED": true,
+        "TEMP_THRESHOLD_FAHRENHEIT": 105.0,
+        "HUMIDITY_THRESHOLD_PERCENT": 70.0,
+        "EMAIL_RECIPIENT": "user@example.com",
+        "SMS_NUMBER": "+11234567890"
     }
+
 }

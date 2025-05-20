@@ -4,6 +4,20 @@ This is my attempt at creating a **from-scratch, modernized, fully customizable*
 
 **ANY URLs used below are simply for reference purposes. I am developing this myself and am getting zero kickbacks or anything like that from any of these URLs.**
 
+## **🌟 Overview**
+An open-source **IoT-powered incubator system** with **real-time temperature control, adaptive humidity management, MQTT integration, and web monitoring**.
+
+## **🚀 Features**
+✅ **Web Dashboard** for live monitoring
+✅ **Automated Egg Turner** with adjustable settings
+✅ **Real-time Climate Control** based on sensor readings
+✅ **Historical Data Logging** via SQLite
+✅ **MQTT Remote Management**
+
+## **🛠 Installation**
+```bash
+bash install_script.sh
+
 **--- --- --- ---**
 ## **🛠 Hardware Components**
 ### **1️⃣ Mainboard**

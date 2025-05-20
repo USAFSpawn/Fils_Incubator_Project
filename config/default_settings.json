@@ -1,0 +1,33 @@
+{
+    "GPIO": {
+        "TURNER_SERVO": 18,
+        "HEATER_RELAY": 17,
+        "HUMIDIFIER_RELAY": 27,
+        "FAN_PWM": 14
+    },
+    "MQTT": {
+        "BROKER": "mqtt.local",
+        "PORT": 1883,
+        "TOPICS": {
+            "TEMPERATURE": "incubator/temp",
+            "HUMIDITY": "incubator/humidity",
+            "COMMANDS": "incubator/commands"
+        }
+    },
+    "EGG_TURNER": {
+        "ENABLED": true,
+        "INTERVAL_MINUTES": 90
+    },
+    "ADAPTIVE_CLIMATE_CONTROL": {
+        "ENABLED": true,
+        "TEMPERATURE_TARGET_FAHRENHEIT": 99.5,
+        "HUMIDITY_TARGET_PERCENT": 55.0
+    },
+    "LOGGING": {
+        "ENABLED": true,
+        "DEBUG_MODE": false
+    },
+    "POWER_EFFICIENCY_MODE": {
+        "ENABLED": false
+    }
+}

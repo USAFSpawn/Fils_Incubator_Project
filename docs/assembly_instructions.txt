@@ -104,3 +104,39 @@ This document provides **step-by-step instructions** for assembling, wiring, and
     python3 incubator.py
 3. If configured, access the web dashboard at the below URL: 
     http://<raspberry-pi-ip>:5000
+
+
+
+
+# 🛠 Assembly & Wiring Guide
+
+This guide provides detailed wiring instructions for setting up the incubator hardware.
+
+## **1️⃣ Required Components**
+- ✅ Raspberry Pi 4B
+- ✅ SHT4x & DHT22 Temperature Sensors
+- ✅ MG995 Servo Motor (Egg Turner)
+- ✅ Relays for Heater & Humidifier
+- ✅ Cooling Fan for Air Circulation
+
+## **2️⃣ Wiring Diagram**
+
+Component------|------GPIO Pin
+Egg Turner------|------GPIO18
+Heater Relay------|------GPIO17
+Humidifier Relay------|------GPIO27
+Fan PWM------|------GPIO14
+SHT4x SDA/SCL------|------GPIO2, GPIO3
+DHT22 Signal------|------GPIO4
+
+
+## **3️⃣ Sensor Setup**
+### **SHT4x Wiring**
+- **VCC** → **Pi 3.3V**
+- **GND** → **Pi GND**
+- **SDA/SCL** → **Pi I2C Pins (GPIO2 & GPIO3)**
+
+### **DHT22 Wiring**
+- **VCC** → **Pi 5V**
+- **GND** → **Pi GND**
+- **Signal** → **Pi GPIO4**
