@@ -5,9 +5,6 @@ This is my attempt at creating a **from-scratch, modernized, fully customizable*
 **ANY URLs used below are simply for reference purposes. I am developing this myself and am getting zero kickbacks or anything like that from any of these URLs.**
 
 **--- --- --- ---**
-**#SECTION: HARDWARE**
-**--- --- --- ---**
-
 ## **🛠 Hardware Components**
 ### **1️⃣ Mainboard**
 The central controller managing automation, data logging, and web interface.
@@ -74,11 +71,9 @@ A well-insulated housing to retain stable incubation conditions.
 
 ---
 
+**--- --- --- ---**
 ## **🛠 Hardware Assembly & Wiring Guide**
-
-# 🛠 Fils_Incubator_Project - Assembly & Wiring Guide
-
-This document provides **step-by-step instructions** for assembling, wiring, and configuring the **Raspberry Pi-based automated egg incubator**.
+This provides **step-by-step instructions** for assembling, wiring, and configuring the **Raspberry Pi-based automated egg incubator**.
 
 ---
 
@@ -196,9 +191,6 @@ This document provides **step-by-step instructions** for assembling, wiring, and
 
 
 **--- --- --- ---**
-**#SECTION: SOFTWARE**
-**--- --- --- ---**
-
 ## **⚡ Software Stack**
 - 🐍 **Python** (for automation & sensor control)
 - 🌐 **Flask/FastAPI** (for web dashboard)
@@ -208,6 +200,7 @@ This document provides **step-by-step instructions** for assembling, wiring, and
 
 ---
 
+**--- --- --- ---**
 ## **⚡ Software Components**
 The following software components form the backbone of the **incubator automation system**, enabling **sensor control, web monitoring, data logging, and remote access**.
 
