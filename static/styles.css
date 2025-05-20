@@ -1,0 +1,159 @@
+/* 🐣 Incubator Dashboard - Final Styling */
+/* 🎨 Clean, structured, interactive, and visually appealing design */
+
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #0077b6;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+section {
+    background-color: white;
+    width: 80%;
+    margin: 25px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+section:hover {
+    transform: scale(1.02);
+}
+
+h2 {
+    color: #0077b6;
+    border-bottom: 3px solid #0077b6;
+    padding-bottom: 5px;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+button {
+    background-color: #0096c7;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #005f73;
+}
+
+#sensor-data p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#sensor-data span {
+    font-size: 22px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#sensor-data #temp {
+    background-color: #ffcc00;
+    color: black;
+}
+
+#sensor-data #humidity {
+    background-color: #69c8ff;
+    color: black;
+}
+
+/* 📷 Camera Feed Styling */
+#camera-feed img {
+    border: 3px solid #0077b6;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* ⚙️ Settings Section */
+#settings-editor form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#settings-editor label {
+    font-size: 18px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+#settings-editor input {
+    padding: 10px;
+    width: 50%;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#settings-editor button {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/* 📊 Historical Logs & Graph */
+#logs-section {
+    text-align: center;
+    padding: 20px;
+}
+
+#logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#logs-table th, #logs-table td {
+    padding: 14px;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+}
+
+#logs-table th {
+    background-color: #0077b6;
+    color: white;
+}
+
+#logs-table tr:nth-child(even) {
+    background-color: #f4f4f9;
+}
+
+#logs-table tr:hover {
+    background-color: #dff6ff;
+}
+
+/* 📈 Graph Styling */
+#sensor-chart {
+    width: 90%;
+    max-width: 700px;
+    margin: 20px auto;
+    border: 3px solid #0077b6;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
