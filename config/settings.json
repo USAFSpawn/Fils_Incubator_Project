@@ -50,10 +50,11 @@
         "ENABLED": true,
         "SMS_ENABLED": true,
         "EMAIL_ENABLED": true,
-        "TEMP_THRESHOLD_FAHRENHEIT": 105.0,
-        "HUMIDITY_THRESHOLD_PERCENT": 70.0,
+        "TEMP_HIGH_THRESHOLD_FAHRENHEIT": 105.0,
+        "TEMP_LOW_THRESHOLD_FAHRENHEIT": 95.0,
+        "HUMIDITY_HIGH_THRESHOLD_PERCENT": 70.0,
+        "HUMIDITY_LOW_THRESHOLD_PERCENT": 40.0,
         "EMAIL_RECIPIENT": "user@example.com",
         "SMS_NUMBER": "+11234567890"
     }
-
 }

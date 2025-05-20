@@ -1,11 +1,16 @@
 {
+    "_comment": "This configuration file controls all adjustable settings for the incubator system.",
+
     "GPIO": {
+        "_comment": "Define GPIO pins for various hardware components.",
         "TURNER_SERVO": 18,
         "HEATER_RELAY": 17,
         "HUMIDIFIER_RELAY": 27,
         "FAN_PWM": 14
     },
+
     "MQTT": {
+        "_comment": "MQTT settings for remote monitoring and control.",
         "BROKER": "mqtt.local",
         "PORT": 1883,
         "TOPICS": {
@@ -14,20 +19,42 @@
             "COMMANDS": "incubator/commands"
         }
     },
+
     "EGG_TURNER": {
+        "_comment": "Controls egg rotation, including target angles and movement duration.",
         "ENABLED": true,
-        "INTERVAL_MINUTES": 90
+        "INTERVAL_MINUTES": 30,
+        "ROTATION_ANGLE_DEGREES": 35,
+        "MOVEMENT_DURATION_SECONDS": 10
     },
+
     "ADAPTIVE_CLIMATE_CONTROL": {
+        "_comment": "Automatically adjust heating and humidity based on sensor data.",
         "ENABLED": true,
-        "TEMPERATURE_TARGET_FAHRENHEIT": 99.5,
-        "HUMIDITY_TARGET_PERCENT": 55.0
+        "TEMPERATURE_TARGET_FAHRENHEIT": 100.3,
+        "HUMIDITY_TARGET_PERCENT": 50.0
     },
+
     "LOGGING": {
+        "_comment": "Toggle logging features for debugging and system monitoring.",
         "ENABLED": true,
         "DEBUG_MODE": false
     },
+
     "POWER_EFFICIENCY_MODE": {
+        "_comment": "If enabled, reduces power consumption by limiting sensor polling frequency.",
         "ENABLED": false
+    },
+
+    "ALERTS": {
+        "ENABLED": true,
+        "SMS_ENABLED": true,
+        "EMAIL_ENABLED": true,
+        "TEMP_HIGH_THRESHOLD_FAHRENHEIT": 105.0,
+        "TEMP_LOW_THRESHOLD_FAHRENHEIT": 95.0,
+        "HUMIDITY_HIGH_THRESHOLD_PERCENT": 70.0,
+        "HUMIDITY_LOW_THRESHOLD_PERCENT": 40.0,
+        "EMAIL_RECIPIENT": "user@example.com",
+        "SMS_NUMBER": "+11234567890"
     }
 }

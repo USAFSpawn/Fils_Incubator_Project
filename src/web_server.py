@@ -1,30 +1,40 @@
 # 🐣 Fils_Incubator_Project - Web Server (web_server.py)
 # This script provides a Flask-based web dashboard for monitoring and managing the incubator.
-# ✅ Displays Live Sensor Data
-# ✅ Allows Remote MQTT Control
-# ✅ Enables Editing of settings.json via Web UI
-# ✅ Supports Real-time Graph Updates using Chart.js
+# ✅ Provides live monitoring & incubator control via Flask API.
+# ✅ Integrates SMS & Email Alerts for temperature/humidity threshold violations.
+# ✅ Supports real-time data visualization for incubation tracking.
 
 import json
 import sqlite3
+import smtplib
+from email.mime.text import MIMEText
 import paho.mqtt.client as mqtt
+from twilio.rest import Client
 from flask import Flask, jsonify, render_template, request
 
 # 🔧 Load Configuration Settings from JSON
 CONFIG_FILE = "../config/settings.json"
 DATABASE_FILE = "../logs/incubator_data.db"
+ALERTS_CONFIG_FILE = "../config/alerts.env"
 
-# Function to Load Settings
 def load_settings():
+    """Loads system configuration from settings.json."""
     with open(CONFIG_FILE, "r") as config_file:
         return json.load(config_file)
 
 settings = load_settings()
 
-# MQTT Configuration
+# 📡 MQTT Configuration
 MQTT_BROKER = settings["MQTT"]["BROKER"]
 MQTT_PORT = settings["MQTT"]["PORT"]
 MQTT_TOPICS = settings["MQTT"]["TOPICS"]
+
+# 📢 Load Alert Credentials
+alert_creds = {}
+with open(ALERTS_CONFIG_FILE, "r") as env_file:
+    for line in env_file:
+        key, value = line.strip().split("=")
+        alert_creds[key] = value
 
 # Initialize Flask App
 app = Flask(__name__)
@@ -36,7 +46,7 @@ mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
 # 🔥 Route: Home Dashboard
 @app.route("/")
 def dashboard():
-    """Render the main dashboard with live sensor data and settings editor."""
+    """Render the main dashboard with live sensor data & settings editor."""
     temp, humidity = read_latest_sensor_data()
     return render_template("dashboard.html", temperature=temp, humidity=humidity, settings=settings)
 
@@ -45,6 +55,10 @@ def dashboard():
 def sensor_api():
     """Return the latest temperature and humidity data in JSON format."""
     temp, humidity = read_latest_sensor_data()
+
+    if settings["ALERTS"]["ENABLED"]:
+        check_alerts(temp, humidity)
+
     return jsonify({"temperature": temp, "humidity": humidity})
 
 # 📡 Route: Send MQTT Command
@@ -65,10 +79,10 @@ def update_settings():
         new_settings = request.json
 
         # Validate input before updating
-        if "ADAPTIVE_CLIMATE_CONTROL" in new_settings:
-            temp_target = new_settings["ADAPTIVE_CLIMATE_CONTROL"].get("TEMPERATURE_TARGET_FAHRENHEIT", None)
-            if temp_target and not (80 <= temp_target <= 105):  # Safe incubation range
-                return jsonify({"status": "error", "message": "Invalid temperature range"}), 400
+        temp_high = new_settings["ALERTS"].get("TEMP_HIGH_THRESHOLD_FAHRENHEIT", None)
+        temp_low = new_settings["ALERTS"].get("TEMP_LOW_THRESHOLD_FAHRENHEIT", None)
+        if temp_high and temp_low and temp_low >= temp_high:
+            return jsonify({"status": "error", "message": "Low threshold must be lower than high threshold"}), 400
 
         # Write to settings.json
         with open(CONFIG_FILE, "w") as config_file:
@@ -91,20 +105,43 @@ def read_latest_sensor_data():
     data = c.fetchone()
     conn.close()
 
-    # Return default values if no data exists
     return data if data else (99.5, 55.0)
 
-# 📈 Route: Fetch Historical Sensor Data for Graphs
-@app.route("/api/history")
-def fetch_history():
-    """Return historical sensor data for graph visualization."""
-    conn = sqlite3.connect(DATABASE_FILE)
-    c = conn.cursor()
-    c.execute("SELECT timestamp, temp, humidity FROM incubator ORDER BY timestamp DESC LIMIT 30")
-    data = [{"timestamp": row[0], "temperature": row[1], "humidity": row[2]} for row in c.fetchall()]
-    conn.close()
+# 📢 Function: Trigger SMS & Email Alerts
+def check_alerts(temp, humidity):
+    """Triggers alerts if temperature/humidity are outside defined safe ranges."""
+    alerts = settings["ALERTS"]
 
-    return jsonify(data)
+    temp_alert = temp < alerts["TEMP_LOW_THRESHOLD_FAHRENHEIT"] or temp > alerts["TEMP_HIGH_THRESHOLD_FAHRENHEIT"]
+    humidity_alert = humidity < alerts["HUMIDITY_LOW_THRESHOLD_PERCENT"] or humidity > alerts["HUMIDITY_HIGH_THRESHOLD_PERCENT"]
+
+    if temp_alert or humidity_alert:
+        message = f"🚨 Alert! Incubator readings outside safe range:\nTemperature: {temp}°F\nHumidity: {humidity}%"
+
+        if alerts["SMS_ENABLED"]:
+            send_sms(message)
+        if alerts["EMAIL_ENABLED"]:
+            send_email(message)
+
+# 📡 Function: Send SMS via Twilio
+def send_sms(message):
+    """Sends an SMS notification using Twilio."""
+    client = Client(alert_creds["TWILIO_SID"], alert_creds["TWILIO_AUTH"])
+    client.messages.create(body=message, from_=alert_creds["TWILIO_PHONE"], to=settings["ALERTS"]["SMS_NUMBER"])
+
+# 📧 Function: Send Email Alert
+def send_email(message):
+    """Sends an email alert using SMTP."""
+    msg = MIMEText(message)
+    msg["Subject"] = "🚨 Incubator Alert"
+    msg["From"] = alert_creds["EMAIL_USER"]
+    msg["To"] = settings["ALERTS"]["EMAIL_RECIPIENT"]
+
+    server = smtplib.SMTP(alert_creds["EMAIL_SERVER"], int(alert_creds["EMAIL_PORT"]))
+    server.starttls()
+    server.login(alert_creds["EMAIL_USER"], alert_creds["EMAIL_PASS"])
+    server.sendmail(alert_creds["EMAIL_USER"], settings["ALERTS"]["EMAIL_RECIPIENT"], msg.as_string())
+    server.quit()
 
 # 🔧 Main Execution
 if __name__ == "__main__":
