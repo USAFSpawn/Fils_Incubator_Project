@@ -1,0 +1,24 @@
+# 🛠 Hardware Configuration - Raspberry Pi Pin Assignments
+
+GPIO:
+  TURNER_SERVO: 18
+  HEATER_RELAY: 17
+  HUMIDIFIER_RELAY: 27
+  FAN_PWM: 14
+
+SENSORS:
+  TEMPERATURE:
+    TYPE: SHT4X
+    SDA_PIN: 2
+    SCL_PIN: 3
+  HUMIDITY:
+    TYPE: DHT22
+    DATA_PIN: 4
+
+MQTT:
+  BROKER: "mqtt.local"
+  PORT: 1883
+  TOPICS:
+    TEMPERATURE: "incubator/temp"
+    HUMIDITY: "incubator/humidity"
+    COMMANDS: "incubator/commands"

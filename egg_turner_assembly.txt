@@ -1,0 +1,14 @@
+# 🛠 Egg Turner Assembly Guide
+
+## 🔹 Required Components:
+- MG995 Servo Motor
+- 12V Power Supply
+- PWM Controller (GPIO18)
+
+## 🔹 Assembly Instructions:
+1️⃣ Mount the servo motor securely inside the incubator.
+2️⃣ Connect the **PWM signal** to Raspberry Pi GPIO18.
+3️⃣ Attach egg trays to the servo motor axis.
+4️⃣ Verify movement using `test_motors.py`.
+
+✅ Your egg turner is now functional!
