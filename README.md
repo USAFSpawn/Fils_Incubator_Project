@@ -24,10 +24,23 @@ Provides warmth and humidity regulation for proper egg development.
 - **PTC Heating Pad (12V)** – [PTC Heating Pad](https://www.aliexpress.com/item/32964774923.html)
 - **Ultrasonic Humidifier** – [Levoit LV600S Smart Hybrid Humidifier](https://www.nytimes.com/wirecutter/reviews/the-best-humidifier/)
 
-### **4️⃣ Egg Turning Mechanism**
+### **4️⃣ Egg Turning System**
 Automates periodic rotation to mimic natural egg incubation.
-- **Servo Motor (MG995)** – [MG995 Servo Motor (Amazon)](https://www.amazon.com/dp/B07Q4ZXHPZ)
-- **Stepper Motor (NEMA 17)** – [NEMA 17 Stepper Motor](https://www.amazon.com/dp/B074X3C4J3)
+
+#### **Egg Turner Motor**
+- Servo Motor (MG995) – [MG995 Servo Motor](https://www.amazon.com/dp/B07Q4ZXHPZ)
+- Stepper Motor (NEMA 17) – [NEMA 17 Stepper Motor](https://www.amazon.com/dp/B074X3C4J3)
+
+#### **Egg Turner Racks & Trays**
+- Universal Chicken Egg Trays (6-pack) – [Incubator Warehouse](https://incubatorwarehouse.com/collections/egg-incubator-accessories-incubator-egg-turners)
+- GQF Automatic Egg Turner (Chicken & Quail) – [Berry Hill](https://berryhill.ca/collections/incubator-auto-turners)
+- DIY Modular Egg Setter Tray (Flexy35Y) – [Hatching Time](https://hatchingtime.com/collections/diy-incubation-equipment)
+- Plastic Egg Trays for Cabinet Incubators – [Amazon](https://www.amazon.com/incubator-trays/s?k=incubator+trays)
+
+#### **Egg Turner Mounting Hardware**
+- Metal Brackets for Egg Turner Motor Mounting – [Amazon](https://www.amazon.com/dp/B08HR6ZTQK)
+- Adjustable Egg Rack Rails – [Incubator Warehouse](https://incubatorwarehouse.com/collections/egg-incubator-accessories-diy-incubator-parts)
+- Egg Turner Arm Linkage Kit – [Berry Hill](https://berryhill.ca/collections/incubator-auto-turners)
 
 ### **5️⃣ Air Circulation & Ventilation**
 Distributes heat and humidity evenly inside the incubator.
@@ -115,17 +128,45 @@ This document provides **step-by-step instructions** for assembling, wiring, and
 
 ---
 
-## **6️⃣ Egg Turning Mechanism Installation**
-### **Servo Motor (MG995) Wiring**
-- **VCC** → Raspberry Pi **5V**
-- **GND** → Raspberry Pi **GND**
-- **PWM Signal** → Raspberry Pi **GPIO18**
+## **6️⃣ Egg Turner Assembly/Installation**
+### **1️⃣ Preparing the Egg Trays & Racks**
+- Choose **modular egg trays** based on the egg size (chicken, duck, quail).
+- Secure trays into **adjustable rails or mounting brackets** for smooth rotation.
+- Ensure **even spacing** between trays for uniform heat and humidity distribution.
 
-### **Stepper Motor (NEMA 17) Wiring (Using A4988 Stepper Driver)**
-- **Step Signal** → Raspberry Pi **GPIO22**
-- **Dir Signal** → Raspberry Pi **GPIO23**
-- **Power** → **12V Supply**
-- **Motor Shaft** → **Egg-Turning Rack System**
+---
+
+### **2️⃣ Installing the Egg Turner Motor**
+#### **Servo Motor (MG995) Installation**
+- **Mount the servo motor** on a **fixed side panel** inside the incubator.
+- **Connect the servo arm to the egg tray** using an adjustable linkage.
+- **Wiring:**
+  - **VCC** → Raspberry Pi **5V**
+  - **GND** → Raspberry Pi **GND**
+  - **PWM Signal** → Raspberry Pi **GPIO18**
+
+#### **Stepper Motor (NEMA 17) Installation**
+- Attach the **stepper motor** to a **frame-mounted axle** for smooth tray movement.
+- Secure the **motor shaft** with a **bracket or rotating pulley system**.
+- **Wiring with A4988 Stepper Driver:**
+  - **Step Signal** → Raspberry Pi **GPIO22**
+  - **Dir Signal** → Raspberry Pi **GPIO23**
+  - **Power** → **12V Supply**
+
+---
+
+### **3️⃣ Installing Turner Arm Linkage**
+- **Use a flexible rod or metal linkage** to connect the **motor to the egg racks**.
+- **Adjust linkage length** to **achieve proper turning angles** (tilt between 30°-45°).
+- **Secure connections** with **screws or adjustable clamps** for stability.
+
+---
+
+### **4️⃣ Automating Egg Turning Cycles**
+#### **Setting Up Python Control Script**
+- Install **GPIO control libraries**:
+   ```bash
+   pip install gpiozero RPi.GPIO
 
 ---
 
