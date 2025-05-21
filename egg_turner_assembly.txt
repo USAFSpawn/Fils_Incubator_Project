@@ -1,14 +1,46 @@
-# 🛠 Egg Turner Assembly Guide
 
-## 🔹 Required Components:
-- MG995 Servo Motor
-- 12V Power Supply
-- PWM Controller (GPIO18)
+---
 
-## 🔹 Assembly Instructions:
-1️⃣ Mount the servo motor securely inside the incubator.
-2️⃣ Connect the **PWM signal** to Raspberry Pi GPIO18.
-3️⃣ Attach egg trays to the servo motor axis.
-4️⃣ Verify movement using `test_motors.py`.
+### **🐣 `/docs/egg_turner_assembly.txt` (Updated for Stepper Motor)**
+```plaintext
+# 🛠 Egg Turner Assembly Guide (Stepper Motor System)
+This guide explains how to assemble and integrate the egg turner system using **one NEMA 23 stepper motor per vertical stack**, ensuring trays tilt **30-45 degrees in either direction**.
 
-✅ Your egg turner is now functional!
+---
+
+## **1️⃣ Required Components**
+✅ **NEMA 23 Stepper Motor** (1 per vertical stack)
+✅ **TB6600 Stepper Driver**
+✅ **24V DC Power Supply**
+✅ **Mounting Bracket for Stepper Motor**
+✅ **Vertical Rod or Pivoting Linkage System**
+✅ **Egg Trays with Adjustable Tilt Points**
+✅ **Screws & Fasteners**
+
+---
+
+## **2️⃣ Assembly Instructions**
+### **A) Mechanical Setup**
+1️⃣ **Mount the Stepper Motor:**
+   - Secure the **NEMA 23 stepper motor** onto the incubator frame using screws or fasteners.
+   - Ensure the motor axis is positioned at **the center of the vertical stack** to allow smooth movement.
+   - Attach a **pivoting linkage or vertical rod** that connects to **all trays** in the stack.
+
+2️⃣ **Connect the Vertical Rod System:**
+   - The motor moves **a single metal or nylon rod**, which **tilts all trays in sync**.
+   - **Each tray should pivot on a fixed hinge** to allow movement **without excessive resistance**.
+   - **Lubricate pivot points if necessary** to ensure frictionless movement.
+
+3️⃣ **Adjust Movement Range:**
+   - **Stepper Motor:** Can rotate **precisely to any angle**, allowing **custom tilt adjustments**.
+   - **Tilt trays to 30-45° over XX seconds**.
+   - **Return to level position for tray removal**.
+
+---
+
+## **3️⃣ Troubleshooting Guide**
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| **Trays not tilting smoothly** | Vertical rod resistance | Lubricate hinge points or adjust linkage tension |
+| **Motor not responding** | Wiring issue | Check GPIO & power connections |
+| **Stepper motor skipping steps** | Low torque setting | Increase stepper driver current |

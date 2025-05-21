@@ -54,7 +54,21 @@
         "TEMP_LOW_THRESHOLD_FAHRENHEIT": 95.0,
         "HUMIDITY_HIGH_THRESHOLD_PERCENT": 70.0,
         "HUMIDITY_LOW_THRESHOLD_PERCENT": 40.0,
-        "EMAIL_RECIPIENT": "user@example.com",
-        "SMS_NUMBER": "+11234567890"
+    },
+
+    "STEPPER_MOTOR": {
+        "STEP_PIN": 23,
+        "DIR_PIN": 24,
+        "ENABLE_PIN": 25,
+        "TILT_ANGLE_DEGREES": 45,
+        "TILT_DURATION_SECONDS": 10,
+        "TILT_INTERVAL_MINUTES": 90,
+        "STEPS_PER_DEGREE": 10
+    },
+
+    "CLOUD_SYNC": {
+        "ENABLED": true,
+        "SERVICE": "OneDrive",
+        "SYNC_FREQUENCY_MINUTES": 10
     }
 }

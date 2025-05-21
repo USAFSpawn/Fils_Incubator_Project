@@ -5,18 +5,33 @@ This is my attempt at creating a **from-scratch, modernized, fully customizable*
 **ANY URLs used below are simply for reference purposes. I am developing this myself and am getting zero kickbacks or anything like that from any of these URLs.**
 
 ## **🌟 Overview**
-An open-source **IoT-powered incubator system** with **real-time temperature control, adaptive humidity management, MQTT integration, and web monitoring**.
+An open-source **IoT-powered incubator system** with **real-time temperature control, adaptive humidity management, precise egg tray tilting, MQTT integration, web monitoring, and automated alerts**.
 
 ## **🚀 Features**
-✅ **Web Dashboard** for live monitoring
-✅ **Automated Egg Turner** with adjustable settings
-✅ **Real-time Climate Control** based on sensor readings
-✅ **Historical Data Logging** via SQLite
-✅ **MQTT Remote Management**
+✅ **Web Dashboard** for live monitoring of incubation conditions
+✅ **Automated Egg Turner** using **NEMA 23 stepper motor with TB6600 driver**
+✅ **Precise Tilt Control (30-45°)** with **configurable timing & intervals**
+✅ **Real-time Climate Control** based on **sensor readings & adaptive settings**
+✅ **Historical Data Logging** via SQLite with **cloud backup support**
+✅ **MQTT Remote Management** for wireless control & monitoring
+✅ **SMS & Email Alerts** for temperature/humidity threshold violations
+✅ **Google Drive & OneDrive log syncing** via **RClone integration**
 
 ## **🛠 Installation**
-```bash
-bash install_script.sh
+### **1️⃣ Automatic Setup**
+- Run the **installation script** to install all dependencies:
+  ```bash
+  bash install_script.sh
+### **2️⃣ Manual Setup**
+- Install system depedencies:
+  sudo apt update && sudo apt upgrade -y
+  sudo apt install -y python3 python3-pip sqlite3 mosquitto mosquitto-clients rclone
+- Install Python Dependencies:
+  pip3 install -r requirements.txt
+- Web Dashboard Access:
+  ```bash
+  python3 src/web_server.py
+  http://<raspberry-pi-ip>:5000
 
 **--- --- --- ---**
 ## **🛠 Hardware Components**
