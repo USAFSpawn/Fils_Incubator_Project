@@ -17,6 +17,12 @@ An open-source **IoT-powered incubator system** with **real-time temperature con
 ✅ **SMS & Email Alerts** for temperature/humidity threshold violations
 ✅ **Google Drive & OneDrive log syncing** via **RClone integration**
 
+## **🔧 Raspberry Pi Compatibility**
+### ✅ **Tested & Verified Compatibility**
+The incubator system is fully compatible with:
+- **Raspberry Pi 4 Model B (2GB, 4GB, 8GB)**
+- **Raspberry Pi 5 (4GB, 8GB)**
+
 ## **🛠 Installation**
 ### **1️⃣ Automatic Setup**
 - Run the **installation script** to install all dependencies:
